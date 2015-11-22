@@ -8,8 +8,8 @@ plot_scatterplot();
 function plot_scatterplot(){
     console.log("here");
     var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 960 - margin.left - margin.right,
-    height = 500 - margin.top - margin.bottom;
+    width = 800 - margin.left - margin.right,
+    height = 300 - margin.top - margin.bottom;
 
 /* 
  * value accessor - returns the value to encode for a given data object.
@@ -94,7 +94,7 @@ d3.csv("Randomdata.csv", function(error, data) {
       .attr("class", "dot")
       .attr("r", function(data){
                 console.log((data.size))
-                return data.size;
+                return data.size/2;
             })
       .attr("cx", xMap)
       .attr("cy", yMap)
