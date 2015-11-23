@@ -93,8 +93,8 @@ d3.csv("Randomdata.csv", function(error, data) {
     .enter().append("circle")
       .attr("class", "dot")
       .attr("r", function(data){
-                console.log((data.size))
-                return data.size/2;
+                //console.log((data.size))
+                return data.size/2.25;
             })
       .attr("cx", xMap)
       .attr("cy", yMap)

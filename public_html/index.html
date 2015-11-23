@@ -10,7 +10,7 @@ and open the template in the editor.
         <meta charset="UTF-8">         
         <meta name="viewport" content="width=device-width, initial-scale=1.0">         
         <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" >-->         
-        <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css">         
+        <link rel="stylesheet" href="Bootstrap/css/bootstrap.css">         
         <style type="text/css"> 
             #map { height: 200px; 
             width: 100%; 
@@ -18,7 +18,7 @@ and open the template in the editor.
         </style>
         <script src="http://d3js.org/d3.v3.min.js"></script>
     </head>     
-    <body> 
+    <body > 
         <nav class="navbar navbar-inverse navbar-fixed-top"> 
             <div class="container"> 
                 <div class="navbar-header"> 
@@ -89,11 +89,13 @@ and open the template in the editor.
             <div class="col-md-8" style="margin-left: 0;
         padding-left: 19px;
         border-left: 1px solid #eee;"> 
-                <div id="scatter" class="col-md-12">
+                <div id="scatter" class="col-md-12" >
                 <style scoped>
                                         body {
                       font: 11px sans-serif;
+                      
                     }
+                    
 
                     .axis path,
                     .axis line {
@@ -114,7 +116,7 @@ and open the template in the editor.
                 </style>
                 <script src="Scatterplot.js">
                     
-                    console.log("html");
+                    
                     
                 </script>
                 
@@ -129,10 +131,63 @@ and open the template in the editor.
             <div class="col-md-4" style="margin-right: 0;
         padding-right: 19px;
         border-right: 1px solid #eee;"> 
-                <div id="map"></div>                 
-            </div> 
+            <div class="col-md-4" id="map"></div>                 
+            </div>
+            <div class="col-md-4" id="Bar1">
+                <style scoped>
+                       
+                    .axis {
+                      font: 10px sans-serif;
+                    }
+
+                    .axis path,
+                    .axis line {
+                      fill: none;
+                      stroke: #000;
+                      shape-rendering: crispEdges;
+                    }
+                    .tooltip {
+                                  position: absolute;
+                                  width: 200px;
+                                  height: 28px;
+                                  pointer-events: none;
+                    }
+                </style>
+                <script src="Bar1.js">
+                    
+                    
+                    
+                </script>
+            </div>
+            <div class="col-md-4" id="Bar2">
+                <style scoped>
+                       
+                    .axis {
+                      font: 10px sans-serif;
+                    }
+
+                    .axis path,
+                    .axis line {
+                      fill: none;
+                      stroke: #000;
+                      shape-rendering: crispEdges;
+                    }
+                    .tooltip {
+                                  position: absolute;
+                                  width: 200px;
+                                  height: 28px;
+                                  pointer-events: none;
+                    }
+                </style>
+                <script src="Bar2.js">
+                    
+                    
+                    
+                </script>
+            </div>    
+        </div> 
             
-        </div>
+        
         
         <footer> 
             <p>&copy; Company 2011</p> 
