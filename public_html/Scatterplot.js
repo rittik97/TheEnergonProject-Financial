@@ -31,7 +31,7 @@ var yValue = function(d) { return d["Protein (g)"];}, // data -> value
     yAxis = d3.svg.axis().scale(yScale).orient("left");
 
 // setup fill color
-var cValue = function(d) { return d.Manufacturer;},
+var cValue = function(d) { return d.dev;},
     color = d3.scale.category10();
 
 // add the graph canvas to the body of the webpage
@@ -56,6 +56,7 @@ d3.csv("Randomdata.csv", function(error, data) {
     d.Calories = +d["PPA (Rupees)"];
     d["Protein (g)"] = +d["Yield (%)"];
     d.size=parseInt(d["Size (MW)"]);
+    d.dev=d["Developer"];
 //    console.log(d);
   });
 
@@ -98,22 +99,29 @@ d3.csv("Randomdata.csv", function(error, data) {
             })
       .attr("cx", xMap)
       .attr("cy", yMap)
+      .style("opacity","0.8")
       .style("fill", function(d) { return color(cValue(d));}) 
       .on("mouseover", function(d) {
           tooltip.transition()
                .duration(200)
-               .style("opacity", .9);
-          tooltip.html(d["Cereal Name"] + "<br/> (" + xValue(d) 
+               .style("opacity", .5);
+          tooltip.html(d.dev+ "<br/> (" + xValue(d) 
 	        + ", " + yValue(d) + ")")
                .style("left", (d3.event.pageX + 5) + "px")
                .style("top", (d3.event.pageY - 28) + "px");
+       d3.select(this).transition()
+      .ease('cubic-out')
+      .duration('200')
+      .attr('font-size', 32)
+      .attr('fill', '#F00')
+          ;
       })
       .on("mouseout", function(d) {
           tooltip.transition()
                .duration(500)
                .style("opacity", 0);
       });
-/*
+
   // draw legend
   var legend = svg.selectAll(".legend")
       .data(color.domain())
@@ -135,6 +143,6 @@ d3.csv("Randomdata.csv", function(error, data) {
       .attr("dy", ".35em")
       .style("text-anchor", "end")
       .text(function(d) { return d;})
-      */
+      
 });
 }

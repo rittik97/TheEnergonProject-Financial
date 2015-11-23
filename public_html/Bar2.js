@@ -51,7 +51,7 @@ d3.csv("Bar2.csv", function(error, data) {
     });
 	
   x.domain(data.map(function(d) { return d.date; }));
-  y.domain([0, d3.max(data, function(d) { return d.value; })+30]);
+  y.domain([0, d3.max(data, function(d) { return d.value; })+300]);
 
   svg.append("g")
       .attr("class", "x axis")
@@ -127,5 +127,15 @@ d3.csv("Bar2.csv", function(error, data) {
 			   .attr("fill", "white");
 
 });
+svg.append("text")
+        .attr("x", (width / 2))             
+        .attr("y", 0 - (margin.top / 2))
+        .attr("dy", "0.5em")
+        .attr("text-anchor", "middle")  
+        .style("font-size", "16px") 
+        .style("text-decoration", "underline")  
+        .style("text-decoration", "bold")  
+        .text("Revenue Summary");
+    
     
 }

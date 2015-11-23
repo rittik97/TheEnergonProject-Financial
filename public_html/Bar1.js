@@ -119,5 +119,14 @@ d3.csv("Bar1.csv", function(error, data) {
 			   .attr("fill", "white");
 
 });
+svg.append("text")
+        .attr("x", (width / 2))             
+        .attr("y", 0 - (margin.top / 2))
+        .attr("dy", "0.5em")
+        .attr("text-anchor", "middle")  
+        .style("font-size", "16px") 
+        .style("text-decoration", "underline")  
+        .style("text-decoration", "bold")  
+        .text("Production Summary");
     
 }
