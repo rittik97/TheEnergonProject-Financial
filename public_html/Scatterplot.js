@@ -8,7 +8,7 @@ plot_scatterplot();
 function plot_scatterplot(){
     console.log("here");
     var margin = {top: 20, right: 20, bottom: 30, left: 40},
-    width = 800 - margin.left - margin.right,
+    width = 700 - margin.left - margin.right,
     height = 300 - margin.top - margin.bottom;
 
 /* 
@@ -31,8 +31,9 @@ var yValue = function(d) { return d["Protein (g)"];}, // data -> value
     yAxis = d3.svg.axis().scale(yScale).orient("left");
 
 // setup fill color
-var cValue = function(d) { return d.dev;},
-    color = d3.scale.category10();
+var cValue = function(d) { return d.dev;};
+var    color = d3.scale.ordinal()
+    .range(["#80e30c", "#11d445", "#189eba", "#3c1ba7", "#4f1469", "#d0743c", "#ff8c00"]);
 
 // add the graph canvas to the body of the webpage
 var svg = d3.select("#scatter").append("svg")

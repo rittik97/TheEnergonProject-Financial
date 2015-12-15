@@ -52,7 +52,7 @@ d3.csv("Bar1.csv", function(error, data) {
       .call(xAxis)
     .selectAll("text")
       .style("text-anchor", "end")
-      .attr("dx", "+5em")
+      .attr("dx", "+1.75em")
       .attr("dy", ".55em")
       ;
 
@@ -71,10 +71,10 @@ d3.csv("Bar1.csv", function(error, data) {
   svg.selectAll("bar")
       .data(data)
     .enter().append("rect")
-      .style("fill", "steelblue")
-      .style("fill-opacity","80%")
-      .attr("x", function(d) { return x(d.date); })
-      .attr("width", x.rangeBand())
+      .style("fill","#189eba")// "#11d445")
+      .style("fill-opacity","100%")
+      .attr("x", function(d) { return x(d.date)+15; })
+      .attr("width", x.rangeBand()-15)
       .attr("y", function(d) { return y(d.value); })
       .attr("height", function(d) { return height - y(d.value); })
       /*.on("mouseover", function(d) {
@@ -121,7 +121,7 @@ d3.csv("Bar1.csv", function(error, data) {
 });
 svg.append("text")
         .attr("x", (width / 2))             
-        .attr("y", 0 - (margin.top / 2))
+        .attr("y", height + 25+ (margin.top / 2))
         .attr("dy", "0.5em")
         .attr("text-anchor", "middle")  
         .style("font-size", "16px") 

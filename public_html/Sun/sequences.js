@@ -5,18 +5,45 @@ var radius = Math.min(width, height) / 2;
 
 // Breadcrumb dimensions: width, height, spacing, width of tip/tail.
 var b = {
-  w: 75, h: 30, s: 3, t: 10
+  w: 175, h: 30, s: 3, t: 10
 };
 
 // Mapping of step names to colors.
 var colors = {
-  "BBB": "#5687d1",
-  "CCC": "#7b615c",
-  "AAA": "#de783b",
-  "west": "#6ab975",
-  "South": "#a173d1",
-  "middle": "#c179f1",
-  "end": "#bbbbbb"
+
+"West": "#6ab975",
+"South": "#a173d1",
+"Middle": "#c179f1",
+"North": "#C2080A",
+"end": "#bbbbbb",
+"Azure Power":"#80e30c",
+"Tata Solar":"#11d445",
+
+"ReNew Power":"#189eba",
+"rpMaharashtra":"#187A74",
+"rpPunjab":"#189E8F",
+"rpGujrat":"#189E76",
+"Bathinda 85MW":"#569EBA",
+"Awan 76MW":"#567BBA",
+"Latur 58MW":"#769CE6",
+"Mithapur 61MW":"#767DB0",
+
+"Suzlon":"#4f1469",
+"Welspun Energy":"#ff8c00",
+"Karnataka":"#720042",
+"Punjab":"#CCFBFE",
+"Maharashtra":"30080A",
+"Andhra Pradesh":"#300893",
+
+"Vikram Solar":"#ED1511",
+"vsMadhya Pradesh":"#FF183B",
+"vsMaharashtra":"#FF1862",
+"Rojhani 17MW":"#ED15A1",
+"Mahagenco 125MW":"#ED15E2",
+
+"Gujrat":"C26F0A",
+
+
 };
 
 // Total size of all segments; we set this later, after loading the data.
@@ -74,7 +101,7 @@ function createVisualization(json) {
       .attr("d", arc)
       .attr("fill-rule", "evenodd")
       .style("fill", function(d) { return colors[d.name]; })
-      .style("opacity", 1)
+      .style("opacity", 0.1)
       .on("mouseover", mouseover);
 
   // Add the mouseleave handler to the bounding circle.
@@ -104,14 +131,14 @@ function mouseover(d) {
 
   // Fade all the segments.
   d3.selectAll("path")
-      .style("opacity", 0.3);
+      .style("opacity", 0.75);
 
   // Then highlight only those that are an ancestor of the current segment.
   vis.selectAll("path")
       .filter(function(node) {
                 return (sequenceArray.indexOf(node) >= 0);
               })
-      .style("opacity", 1);
+      .style("opacity", 0.3);
 }
 
 // Restore everything to full opacity when moving off the visualization.
@@ -127,8 +154,8 @@ function mouseleave(d) {
   // Transition each segment to full opacity and then reactivate it.
   d3.selectAll("path")
       .transition()
-      .duration(1000)
-      .style("opacity", 1)
+      .duration(100)
+      .style("opacity", 0.8)
       .each("end", function() {
               d3.select(this).on("mouseover", mouseover);
             });
@@ -142,9 +169,16 @@ function mouseleave(d) {
 function getAncestors(node) {
   var path = [];
   var current = node;
-  while (current.parent) {
+  while (current.parent){
     path.unshift(current);
     current = current.parent;
+    if(current.name.indexOf("vsMadhya Pradesh")>=0){current.name="Madhya Pradesh";}//}substring(current.indexOf("vs"),current.length);}
+    if(current.name.indexOf("vsMaharashtra")>=0){current.name="Maharashtra";}//}substring(current.indexOf("vs"),current.length);}
+    if(current.name.indexOf("rpMaharashtra")>=0){current.name="Maharashtra";}
+    if(current.name.indexOf("rpGujrat")>=0){current.name="Gujrat";}
+    if(current.name.indexOf("rpPunjab")>=0){current.name="Punjab";}
+    console.log(current);
+
   }
   return path;
 }
@@ -188,7 +222,7 @@ function updateBreadcrumbs(nodeArray, percentageString) {
 
   entering.append("svg:polygon")
       .attr("points", breadcrumbPoints)
-      .style("fill", function(d) { return colors[d.name]; });
+      .style("fill", "grey");///function(d) { return colors[d.name]; });
 
   entering.append("svg:text")
       .attr("x", (b.w + b.t) / 2)

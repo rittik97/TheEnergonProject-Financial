@@ -16,117 +16,105 @@ function life(first){
     var tooltip = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
-var margin = {top: 20, right: 20, bottom: 70, left: 40},
+    
+var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = 600 - margin.left - margin.right,
     height = 300 - margin.top - margin.bottom;
-    
-// Parse the date / time
 
-var x = d3.scale.ordinal().rangeRoundBands([0, width],0.005);
+var x0 = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1);
 
-var y = d3.scale.linear().range([height, 0]);
+var x1 = d3.scale.ordinal();
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var color = d3.scale.ordinal()
+    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 
 var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom")
-    ;
+    .scale(x0)
+    .orient("bottom");
 
 var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
-    .ticks(10);
+    ;
 
 var svg = d3.select("#Bar1").append("svg")
         .attr("id","life")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
-    .attr("transform", 
-          "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 d3.csv("Site4Lifetime.csv", function(error, data) {
+  if (error) throw error;
 
-    data.forEach(function(d) {
-        d.date = d.Year;
-        d.value = +d.Yield*100;
-       // console.log(d.value);
-    });
-	
-  x.domain(data.map(function(d) { return d.date; }));
-  y.domain([0, d3.max(data, function(d) { return d.value; })+7]);
+  var ageNames = d3.keys(data[0]).filter(function(key) { return key !== "State"; });
+
+  data.forEach(function(d) {
+    d.ages = ageNames.map(function(name) { return {name: name, value: +d[name]}; });
+    //console.log(d.ages);
+  });
+
+  x0.domain(data.map(function(d) { return d.State; }));
+  x1.domain(ageNames).rangeRoundBands([0, x0.rangeBand()]);
+  y.domain([0, d3.max(data, function(d) { return d3.max(d.ages, function(d) { return d.value; }); })]);
 
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis)
-    .selectAll("text")
+      .selectAll("text")
       .style("text-anchor", "end")
-      .attr("dx", "+1em")
-      .attr("dy", ".55em")
+      //.text("f")
       ;
 
   svg.append("g")
       .attr("class", "y axis")
       .call(yAxis)
     .append("text")
-    .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", "-3.5em")
-      .style("text-anchor", "end")
       .attr("transform", "rotate(-90)")
-      
-      .text("Yield (%)");
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Yield");
 
-  svg.selectAll("bar")
+  var state = svg.selectAll(".state")
       .data(data)
+    .enter().append("g")
+      .attr("class", "g")
+      .attr("transform", function(d) { return "translate(" + x0(d.State) + ",0)"; });
+
+  state.selectAll("rect")
+      .data(function(d) { return d.ages; })
     .enter().append("rect")
-      .style("fill", "steelblue")
-      .style("fill-opacity","80%")
-      .attr("x", function(d) { return x(d.date); })
-      .attr("width", x.rangeBand())
+      .attr("width", x1.rangeBand())
+      .attr("x", function(d) { return x1(d.name); })
       .attr("y", function(d) { return y(d.value); })
       .attr("height", function(d) { return height - y(d.value); })
-      /*.on("mouseover", function(d) {
-          tooltip.transition()
-               .duration(200)
-               .style("opacity", .9);
-          tooltip.html(d.Value  
-	        )
-               .style("left", (d3.event.pageX+5) + "px")
-               .style("top", (d3.event.pageY - 28) + "px")
-               ;
-      })
-      .on("mouseout", function(d) {
-          tooltip.transition()
-               .duration(500)
-               .style("opacity", 0);
-      }
-              */
-                ;
-      
-              
-     /* 
-      svg.selectAll("bars")
-			   .data(data)
-			   .enter()
-			   .append("text")
-			   .text(function(d){return (Math.round(d.Value,3)+" ");})
-                           .attr("x", function(d) {
-                                    
-                                    return x(d.date)+x.rangeBand()/2;
-                                
-			   })
-			   .attr("y", function(d) {
-                                        
-                                                                       
-			   		return (y(d.Value)+12);                                
-			   })
-                                   
-                                   .attr("dx", "-1.2em")
-			   .attr("font-family", "sans-serif")
-			   .attr("font-size", "14px")
-			   .attr("fill", "white");
-*/
+      .style("fill", function(d) { return color(d.name); });
+
+  var legend = svg.selectAll(".legend")
+      .data(ageNames.slice().reverse())
+    .enter().append("g")
+      .attr("class", "legend")
+      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+  legend.append("rect")
+      .attr("x", width - 18)
+      .attr("width", 18)
+      .attr("height", 18)
+      .style("fill", color);
+
+  legend.append("text")
+      .attr("x", width - 24)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(function(d) { return d; });
+
 });
 
 svg.append("text")
@@ -146,117 +134,104 @@ function sitebars(first){
     var tooltip = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("opacity", 0);
-var margin = {top: 20, right: 20, bottom: 70, left: 40},
+var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = 600 - margin.left - margin.right,
     height = 300 - margin.top - margin.bottom;
-    
-// Parse the date / time
 
-var x = d3.scale.ordinal().rangeRoundBands([0, width],0.005);
+var x0 = d3.scale.ordinal()
+    .rangeRoundBands([0, width], .1);
 
-var y = d3.scale.linear().range([height, 0]);
+var x1 = d3.scale.ordinal();
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var color = d3.scale.ordinal()
+    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
 
 var xAxis = d3.svg.axis()
-    .scale(x)
-    .orient("bottom")
-    ;
+    .scale(x0)
+    .orient("bottom");
 
 var yAxis = d3.svg.axis()
     .scale(y)
     .orient("left")
-    .ticks(10);
+    ;
 
 var svg = d3.select("#Bar1").append("svg")
     .attr("id","life")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
-    .attr("transform", 
-          "translate(" + margin.left + "," + margin.top + ")");
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
 d3.csv("Site4Monthly.csv", function(error, data) {
+  if (error) throw error;
 
-    data.forEach(function(d) {
-        d.date = d.Month;
-        d.value = +d.Yield*100;
-       // console.log(d.value);
-    });
-	
-  x.domain(data.map(function(d) { return d.date; }));
-  y.domain([0, d3.max(data, function(d) { return d.value; })+7]);
+  var ageNames = d3.keys(data[0]).filter(function(key) { return key !== "State"; });
+
+  data.forEach(function(d) {
+    d.ages = ageNames.map(function(name) { return {name: name, value: +d[name]}; });
+    //console.log(d.ages);
+  });
+
+  x0.domain(data.map(function(d) { return d.State; }));
+  x1.domain(ageNames).rangeRoundBands([0, x0.rangeBand()]);
+  y.domain([0, d3.max(data, function(d) { return d3.max(d.ages, function(d) { return d.value; }); })]);
 
   svg.append("g")
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis)
-    .selectAll("text")
+      .selectAll("text")
       .style("text-anchor", "end")
-      .attr("dx", "+1em")
-      .attr("dy", ".55em")
+      //.text("f")
       ;
 
   svg.append("g")
       .attr("class", "y axis")
       .call(yAxis)
     .append("text")
-    .attr("transform", "rotate(-90)")
-      .attr("y", 6)
-      .attr("dy", "-3.5em")
-      .style("text-anchor", "end")
       .attr("transform", "rotate(-90)")
-      
-      .text("Yield (%)");
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Yield");
 
-  svg.selectAll("bar")
+  var state = svg.selectAll(".state")
       .data(data)
+    .enter().append("g")
+      .attr("class", "g")
+      .attr("transform", function(d) { return "translate(" + x0(d.State) + ",0)"; });
+
+  state.selectAll("rect")
+      .data(function(d) { return d.ages; })
     .enter().append("rect")
-      .style("fill", "steelblue")
-      .style("fill-opacity","80%")
-      .attr("x", function(d) { return x(d.date); })
-      .attr("width", x.rangeBand())
+      .attr("width", x1.rangeBand())
+      .attr("x", function(d) { return x1(d.name); })
       .attr("y", function(d) { return y(d.value); })
       .attr("height", function(d) { return height - y(d.value); })
-      /*.on("mouseover", function(d) {
-          tooltip.transition()
-               .duration(200)
-               .style("opacity", .9);
-          tooltip.html(d.Value  
-	        )
-               .style("left", (d3.event.pageX+5) + "px")
-               .style("top", (d3.event.pageY - 28) + "px")
-               ;
-      })
-      .on("mouseout", function(d) {
-          tooltip.transition()
-               .duration(500)
-               .style("opacity", 0);
-      }
-              */
-                ;
-      
-              
-     /* 
-      svg.selectAll("bars")
-			   .data(data)
-			   .enter()
-			   .append("text")
-			   .text(function(d){return (Math.round(d.Value,3)+" ");})
-                           .attr("x", function(d) {
-                                    
-                                    return x(d.date)+x.rangeBand()/2;
-                                
-			   })
-			   .attr("y", function(d) {
-                                        
-                                                                       
-			   		return (y(d.Value)+12);                                
-			   })
-                                   
-                                   .attr("dx", "-1.2em")
-			   .attr("font-family", "sans-serif")
-			   .attr("font-size", "14px")
-			   .attr("fill", "white");
-*/
+      .style("fill", function(d) { return color(d.name); });
+
+  var legend = svg.selectAll(".legend")
+      .data(ageNames.slice().reverse())
+    .enter().append("g")
+      .attr("class", "legend")
+      .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+  legend.append("rect")
+      .attr("x", width - 18)
+      .attr("width", 18)
+      .attr("height", 18)
+      .style("fill", color);
+
+  legend.append("text")
+      .attr("x", width - 24)
+      .attr("y", 9)
+      .attr("dy", ".35em")
+      .style("text-anchor", "end")
+      .text(function(d) { return d; });
+
 });
 
 svg.append("text")

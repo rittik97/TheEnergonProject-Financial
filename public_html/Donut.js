@@ -10,8 +10,8 @@ var dataset = {
   oranges: [200, 200, 200, 200]
 };
 
-var width = 400,
-  height = 300,
+var width = 300,
+  height = 130,
   radius = Math.min(width, height) / 2;
 
 var enterClockwise = {
@@ -30,10 +30,10 @@ var pie = d3.layout.pie()
   .sort(null);
 
 var arc = d3.svg.arc()
-  .innerRadius(radius - 60)
-  .outerRadius(radius - 20);
+  .innerRadius(radius - 30)
+  .outerRadius(radius - 10);
 
-var svg = d3.select("#scatter").append("svg")
+var svg = d3.select("#donut").append("svg")
   .attr("width", width)
   .attr("height", height)
   .append("g")
@@ -61,10 +61,20 @@ var path = svg.selectAll("path")
           .attr("class", "text-tooltip")        
           .style("text-anchor", "middle")
           .attr("font-weight", "bold")
-          .style("font-size", radius/2.5+"px")
+          .style("font-size", radius/3.5+"px")
           .attr("fill","red")
           .text("12.1%") 
             ;  
+ svg.append("text")
+          //.datum(pie(dataset.apples))
+          .attr("x", 0 )
+          .attr("y", 0 + 65 )
+          .attr("class", "text-tooltip")        
+          .style("text-anchor", "middle")
+          .attr("font-weight", "bold")
+          .style("font-size", radius/5.5+"px")
+          .attr("fill","red")
+          .text("Capacity Factor")            
     
  svg.append("text")
           .datum(pie(dataset.apples))
@@ -77,6 +87,44 @@ var path = svg.selectAll("path")
 path.transition()  // update
     .duration(750)
     .attrTween("d", arcTween);
+
+var legend = svg.selectAll(".legend")
+      .data(color.domain())
+    .enter().append("g")
+      .attr("class", "legend")
+      //.attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+legend.append("rect")
+      .attr("x", -150)
+      .attr("y", -30)
+      
+      .attr("width", 10)
+      .attr("height", 10)
+      .style("fill", color);
+legend.append("text")
+      .attr("x", -135)
+      .attr("y", -30)
+      .attr("dx", "+3.7em")
+      .attr("dy", "+1.15em")
+       .style("font-size", "65%")
+      .style("text-anchor", "end")
+      .text("Expected")
+
+legend.append("rect")   
+      .attr("x", -150)
+      .attr("y", -15)
+      
+      .attr("width", 10)
+      .attr("height", 10)
+      .style("fill", color);
+legend.append("text")
+      .attr("x", -145)
+      .attr("y", -15)
+      .attr("dx", "3.7em")
+      .attr("dy", "+1.15em")
+       .style("font-size", "65%")
+      .style("text-anchor", "end")
+      .text("Actual")
+
 
 d3.selectAll("input").on("change", change);
 
@@ -129,3 +177,4 @@ function arcTweenOut(a) {
     return arc(i(t));
   };
 }
+
