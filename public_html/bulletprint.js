@@ -39,14 +39,14 @@ d3.json("bullets.json", function(error, data) {
       .attr("class", "subtitle")
       .attr("dy", "1em")
       .text(function(d) { return d.subtitle; });
-  
+  /*
     title.append("text")
       .attr("class", "subtitle")
       .attr("y", 15)
       .attr("x", 122)
     //.text(function(d) { return d.subtitle; });    
               .text("hi");
-      
+    */  
   
 });
 

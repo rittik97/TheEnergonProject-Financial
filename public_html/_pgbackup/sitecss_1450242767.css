@@ -13,13 +13,6 @@ and open the template in the editor.
     font-weight: bold;
     
 }
-.uppergrid{
-    //display: block;
-    text-align: left;
-    background-color: white;
-    
-    font-size: 300%;
-}
 .labelgrid{
     display: block;
     text-align: right;
@@ -66,25 +59,15 @@ and open the template in the editor.
         border-bottom: 1px solid #eee;
     
 }
-#lightdrop {
-    padding-left: 20px;
-    padding-right: 20px;
-    background:#FFF;
-    margin:40px auto;
-      -webkit-box-shadow: 0 .5px .3px -.3px #777;
-       -moz-box-shadow: 0 .5px .3px -.3px #777;
-            box-shadow: 0 .5px .3px -.3px #777;
-    
-}
 
 #drop {
     padding-left: 20px;
     padding-right: 20px;
     background:#FFF;
     margin:40px auto;
-      -webkit-box-shadow: 0 5px 3px -3px #777;
-       -moz-box-shadow: 0 5px 3px -3px #777;
-            box-shadow: 0 5px 3px -3px #777;
+      -webkit-box-shadow: 0 10px 6px -6px #777;
+       -moz-box-shadow: 0 10px 6px -6px #777;
+            box-shadow: 0 10px 6px -6px #777;
     
 }
 

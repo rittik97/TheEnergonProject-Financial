@@ -44,9 +44,9 @@ and open the template in the editor.
     padding-right: 20px;
     background:#FFF;
     margin:40px auto;
-      -webkit-box-shadow: 0 10px 6px -6px #777;
-       -moz-box-shadow: 0 10px 6px -6px #777;
-            box-shadow: 0 10px 6px -6px #777;
+      -webkit-box-shadow: 0 5px 3px -3px #777;
+       -moz-box-shadow: 0 5px 3px -3px #777;
+            box-shadow: 0 5px 3px -3px #777;
     
 }
 
@@ -54,7 +54,18 @@ body {background-color: grey}
 
 #map { height: 300px; 
             width: 50%; 
-            }
+            
+             //margin-right: 20px;
+        padding-right: 19px;
+        border-right: 1px solid #eee;
+}
+#right{
+        margin-right: 0px;
+        padding-right: 19px;
+        border-right: 1px solid #eee;
+    
+}
+            
 #scatter{
                     body {
                       font: 11px sans-serif;
@@ -80,9 +91,7 @@ body {background-color: grey}
                       pointer-events: none;                
                 
             }
-        margin-left: 0;
-        padding-left: 19px;
-        border-left: 1px solid #eee;
+       
 }
 
 #left{
