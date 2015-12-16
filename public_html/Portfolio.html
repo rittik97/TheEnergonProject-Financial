@@ -1,0 +1,203 @@
+<!DOCTYPE html> 
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+--> 
+<html> 
+    <head> 
+        <title>Energon</title>         
+        <meta charset="UTF-8">         
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">         
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" >-->         
+        <link rel="stylesheet" href="Bootstrap/css/bootstrap.css">         
+        <link rel="stylesheet" href="portcss.css">         
+
+        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>      
+        <style type="text/css"> 
+            #map { height: 200px; 
+            width: 100%; 
+            }
+        </style>
+        <link rel="shortcut icon" href="Logo/Logo.ico" />
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+    </head>     
+    <body style="background-color:grey;"> 
+        <nav class="navbar navbar-default navbar-fixed-top"> 
+            <div class="container"> 
+                <div class="navbar-header"> 
+                    <a class="navbar-brand" style="padding-top: 10px;" href="#"> 
+                        <img alt="Brand" width="100" height="35" src="http://www.newsvoir.com//images/user/logo/2632_OrganisationLogo.jpg">                         
+                    </a>                     
+                </div>                 
+                <div id="navbar" class="collapse navbar-collapse"> 
+                    <ul class="nav navbar-nav"> 
+                        <li> 
+                            <a href="index.html">Reports</a> 
+                        </li> 
+                        <li class="active"> 
+                            <a href="Portfolio.html">Portfolio</a> 
+                        </li> 
+                        <li> 
+                            <a href="google.com">About</a> 
+                        </li>                         
+                        <li> 
+                            <a href="ContactUs.html">Contact Us</a> 
+                        </li>                         
+                    </ul>
+                    <ul id="secondary-nav" class="nav pull-right"> 
+                        <li> 
+                            <a>
+                            <img alt="Brand" width="35" height="35" src="Logo/user1.png">
+                            <strong>Rittik</strong>
+                            
+                            </a> 
+                        </li>
+                        <li>
+                            
+                        </li>
+                        
+                    </ul>
+                </div>                 
+                <!--/.nav-collapse -->                 
+            </div>             
+        </nav>         
+        <div class="container-fluid" id="drop" style="background-color:grey;margin-top:100px; "> 
+          <div class="row" style="background-color:grey">  
+            <div class="col-md-6" id="grid"> 
+                <a href='Site.html'><img height='384' width='575' src='src/SolarIndiaMain.jpg'></a>
+                <a href='Site.html'><p><strong>Tata Solar - Gujrat - 100MW</strong></p></a>
+            </div>             
+            <div class="col-md-6" id="grid"> 
+                <a href='Site.html'><img height='390' width='590' src='src/gujarat-solar-1.jpg'></a>                   
+                <a href='Site.html'><p><strong>Vikram Solar - Karnataka - 88MW</strong></p></a>                
+            </div>
+          </div>    
+                         
+        </div>
+                 
+         
+            
+        
+        <!--
+        <footer class="footer" style="background-color:#222;">
+            <div class="container">
+            <p style="font-color:white;">&copy Energon</p> 
+            </div>
+        </footer> 
+        -->
+        <nav class="navbar navbar-inverse navbar-fixed-bottom"> 
+            <div class="container"> 
+                <div class="navbar-header"> 
+                    <a class="navbar-brand" style="padding-top: 10px;" href="#"> 
+                        <img alt="Brand" width="35" height="35" src="Logo/Logo.png">                         
+                    </a>                     
+                </div>                 
+                <div id="navbar" class="collapse navbar-collapse"> 
+                    <ul class="nav navbar-nav"> 
+                        <li> 
+                            <a href="#">&copy Energon</a> 
+                        </li>                         
+                                                 
+                    </ul>                     
+                </div>                 
+                <!--/.nav-collapse -->                 
+            </div>             
+        </nav>    
+        
+              
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>         
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzCAoThV-ZXaWPW73WsIXFE1RFiQm7vhc&callback=initMap">
+        </script>         
+        <script type="text/javascript">
+
+var map;
+function initMap() {
+
+        // Create an array of styles.
+ /*
+        var styles = [
+    {
+      stylers: [
+        { hue: "00ffee" },
+        { saturation: 20 }
+      ]
+    },{
+      featureType: "road",
+      elementType: "geometry",
+      stylers: [
+        { lightness: 100 },
+        { visibility: "simplified" }
+      ]
+    },{
+      featureType: "road",
+      elementType: "labels",
+      stylers: [
+        { visibility: "off" }
+      ]
+    }
+  ];
+
+  // Create a new StyledMapType object, passing it the array of styles,
+  // as well as the name to be displayed on the map type control.
+  var styledMap = new google.maps.StyledMapType(styles,
+    {name: "Styled Map"});
+
+  // Create a map object, and include the MapTypeId to add
+  // to the map type control.
+  var mapOptions = {
+    zoom: 3,
+    center: new google.maps.LatLng(20.650790, 79.423797),
+    mapTypeControlOptions: {
+      mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+    }
+  };
+  var map = new google.maps.Map(document.getElementById('map'),
+    mapOptions);
+
+  //Associate the styled map with the MapTypeId and set it to display.
+ // map.mapTypes.set('map_style', styledMap);
+  //map.setMapTypeId('map_style');
+  */
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 21.701841,lng: 78.986311},
+    zoom: 3,
+	mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+
+
+//var marker = new google.maps.Marker({
+  //  position: {lat: 23.91067,lng: 71.198288},
+    
+  //});
+  var locations = [
+      ['Bitta Solar Power Plant', 23.257829, 69.028301, 4],
+      //['Rajasthan Solar Project', 27.131124, 72.359452, 5],
+      //['Charanka Solar Park', 23.91067, 71.198288, 3],
+      //['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+      //['Maroubra Beach', -33.950198, 151.259302, 1]
+    ];
+ var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i))
+}
+}
+
+
+
+    </script>         
+    </body>     
+</html>

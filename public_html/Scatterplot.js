@@ -32,7 +32,7 @@ var yValue = function(d) { return d["Protein (g)"];}, // data -> value
 
 // setup fill color
 var cValue = function(d) { return d.dev;};
-var    color = d3.scale.ordinal()
+var color = d3.scale.ordinal()
     .range(["#80e30c", "#11d445", "#189eba", "#3c1ba7", "#4f1469", "#d0743c", "#ff8c00"]);
 
 // add the graph canvas to the body of the webpage

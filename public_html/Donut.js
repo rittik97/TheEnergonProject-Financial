@@ -24,7 +24,9 @@ var enterAntiClockwise = {
   endAngle: Math.PI * 2
 };
 
-var color = d3.scale.category20();
+//var color = d3.scale.category20();
+var color = d3.scale.ordinal()
+    .range(["#189eba", "#3c1ba7", "#189eba", "#3c1ba7", "#4f1469", "#d0743c", "#ff8c00"]);
 
 var pie = d3.layout.pie()
   .sort(null);
@@ -62,18 +64,18 @@ var path = svg.selectAll("path")
           .style("text-anchor", "middle")
           .attr("font-weight", "bold")
           .style("font-size", radius/3.5+"px")
-          .attr("fill","red")
+          .attr("fill","#11d445")
           .text("12.1%") 
             ;  
  svg.append("text")
           //.datum(pie(dataset.apples))
           .attr("x", 0 )
-          .attr("y", 0 + 65 )
+          .attr("y", 0 + 63.5 )
           .attr("class", "text-tooltip")        
           .style("text-anchor", "middle")
           .attr("font-weight", "bold")
           .style("font-size", radius/5.5+"px")
-          .attr("fill","red")
+          .attr("fill","#11d445")
           .text("Capacity Factor")            
     
  svg.append("text")
@@ -115,7 +117,7 @@ legend.append("rect")
       
       .attr("width", 10)
       .attr("height", 10)
-      .style("fill", color);
+      .style("fill", "steelblue");
 legend.append("text")
       .attr("x", -145)
       .attr("y", -15)

@@ -1,0 +1,197 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Dec 12, 2015, 2:10:57 PM
+    Author     : Rittik
+*/
+#thead{
+    text-align: left;
+    font-size: 120%;
+    font-weight: bold;
+    
+}
+.labelgrid{
+    display: block;
+    text-align: right;
+    background-color: white;
+    
+    font-size: 300%;
+}
+#grid 
+{
+        margin-left: 0;
+        //padding-left: 19px;
+        border-left: 1px solid #eee;
+        
+        margin-right: 0;
+        //padding-rigth: 19px;
+        border-right: 1px solid #eee;
+        
+        margin-top: 0;
+        //padding-top: 19px;
+        border-top: 1px solid #eee;
+        
+        margin-bottom: 0;
+        //padding-bottom: 19px;
+        border-bottom: 1px solid #eee;
+    background-color: white;
+}
+.grid 
+{
+    background-color: white;
+        margin-left: 0;
+        //padding-left: 19px;
+        border-left: 1px solid #eee;
+        
+        margin-right: 0;
+        //padding-rigth: 19px;
+        border-right: 1px solid #eee;
+        
+        margin-top: 0;
+        //padding-top: 19px;
+        border-top: 1px solid #eee;
+        
+        margin-bottom: 0;
+        //padding-bottom: 19px;
+        border-bottom: 1px solid #eee;
+    
+}
+
+#drop {
+    padding-left: 20px;
+    padding-right: 20px;
+    background:#FFF;
+    margin:40px auto;
+      -webkit-box-shadow: 0 10px 6px -6px #777;
+       -moz-box-shadow: 0 10px 6px -6px #777;
+            box-shadow: 0 10px 6px -6px #777;
+    
+}
+
+body {background-color: grey}
+
+#map { height: 300px; 
+            width: 200; 
+            }
+#scatter{
+                    body {
+                      font: 11px sans-serif;
+                      
+                    }
+                    
+
+                    .axis path,
+                    .axis line {
+                      fill: none;
+                      stroke: #000;
+                      shape-rendering: crispEdges;
+                    }
+
+                    .dot {
+                      stroke: #000;
+                    }
+
+                    .tooltip {
+                      position: absolute;
+                      width: 200px;
+                      height: 28px;
+                      pointer-events: none;                
+                
+            }
+        margin-left: 0;
+        padding-left: 19px;
+        border-left: 1px solid #eee;
+}
+
+#left{
+    margin-left: 0;
+        padding-left: 19px;
+        border-left: 1px solid #eee;
+}
+
+/*
+#lifeb
+{
+    background: #189eba;
+    color: white;
+    font: bold 11px "Helvetica";
+    padding: 2px;
+    text-decoration: none;
+
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+
+    -webkit-box-shadow: 0px 0px 10px rgba(0, 0, 0, .25);
+    -moz-box-shadow: 0px 0px 10px rgba(0, 0, 0, .25);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, .25);
+    
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+#lifeb:after {
+    background: #11d445;
+    color: #FFF;
+    content: ">";
+    display: inline-block;
+    font: bold 11px "Georgia";
+    height: 25px;
+    line-height: 25px;
+    margin-left: 10px;
+    text-align: center;
+    width: 25px;
+    
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+}
+
+#lifeb:hover {
+    -webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 1);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 1);
+
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+*/
+#lifeb{
+  background-color: grey;
+  border: none;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.5);
+  box-shadow: 0px 2px 0px rgba(0, 0, 0, 0.5);
+  color: white;
+  cursor: pointer;
+  font-family: 'Nobile',sans-serif;
+  
+  font-weight: 900;
+  margin:0px 0px;
+  padding-top: 20px;
+  padding: 7px 20px;
+  &:hover {
+    background-color: lighten(#000, 20%);
+  }
+    &:active {
+        -webkit-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 1);
+  -moz-box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 1);
+  box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 1);
+        margin-top:2px;
+    -webkit-transition: all 0.1s ease;
+    -moz-transition:    all 0.1s ease;
+    -ms-transition:     all 0.1s ease;
+    -o-transition:      all 0.1s ease;
+    }
+}

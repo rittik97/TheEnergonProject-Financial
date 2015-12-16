@@ -1,0 +1,15 @@
+#drop {
+    padding-left: 20px;
+    padding-right: 20px;
+    background:#FFF;
+    margin:40px auto;
+      -webkit-box-shadow: 0 10px 6px -6px #777;
+       -moz-box-shadow: 0 10px 6px -6px #777;
+            box-shadow: 0 10px 6px -6px #777;
+    
+}
+
+p {
+    color:white;
+    
+}

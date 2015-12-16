@@ -1,0 +1,296 @@
+<!DOCTYPE html> 
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+--> 
+<html> 
+    <head> 
+        <title>Energon</title>         
+        <meta charset="UTF-8">         
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">         
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" >-->         
+        <link rel="stylesheet" href="Bootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="mycss.css">         
+        <style type="text/css">
+</style>
+        <link rel="shortcut icon" href="Logo/Logo.ico" />
+        <script src="http://d3js.org/d3.v3.min.js"></script>
+    </head>     
+    <body style="background-color:grey;"> 
+        <nav class="navbar navbar-default navbar-fixed-top"> 
+            <div class="container"> 
+                <div class="navbar-header"> 
+                    <a class="navbar-brand" style="padding-top: 10px;" href="#"> 
+                        <img alt="Brand" width="100" height="35" src="http://www.newsvoir.com//images/user/logo/2632_OrganisationLogo.jpg">                         
+                    </a>                     
+                </div>                 
+                <div id="navbar" class="collapse navbar-collapse"> 
+                    <ul class="nav navbar-nav"> 
+                        <li class="active"> 
+                            <a href="index.html">Reports</a> 
+                        </li>                         
+                        <li> 
+                            <a href="Portfolio.html">Portfolio</a> 
+                        </li>                         
+                        <li> 
+                            <a href="google.com">About</a> 
+                        </li>                         
+                        <li> 
+                            <a href="ContactUs.html">Contact Us</a> 
+                        </li>                         
+                    </ul>
+                    <ul id="secondary-nav" class="nav pull-right"> 
+                        <li> 
+                            <a>
+                                <img alt="Brand" width="35" height="35" src="Logo/user1.png">
+                                <strong>Rittik</strong>
+                            </a>                             
+                        </li>
+                        <li>
+</li>
+                    </ul>
+                </div>                 
+                <!--/.nav-collapse -->                 
+            </div>             
+        </nav>
+        <div class="container">
+            <h2>f</h2> 
+            <div class="row">
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover" id="generalsummary"> 
+                        <thead> 
+                            <tr> 
+                                <th>General Summary</th>                                 
+                            </tr>                             
+                            <tr></tr>
+                        </thead>                         
+                        <tbody> 
+                            <tr> 
+                                <td>Installed Capacity</td>                                 
+                                <td>85 MW</td>                                 
+                            </tr>                             
+                            <tr> 
+                                <td>Total Sites</td>                                 
+                                <td>15</td>                                 
+                            </tr>                             
+                            <tr> 
+                                <td>Lifetime Generation</td>                                 
+                                <td>302 MwH</td>                                 
+                            </tr>
+                            <tr> 
+                                <td>Total Investment</td>                                 
+                                <td>INR 135.6 cr</td>                                 
+                            </tr>
+                            <tr> 
+                                <td>Return on Investment</td>                                 
+                                <td>13.5 %</td>                                 
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <br /> 
+                    <button type="button" id="lifeb" onclick="">Production Summary</button>
+                    <button type="button" id="lifeb" onclick=";">Revenue Summary</button>                     
+                    <br />
+                    <div id="Bar1">
+                        <style scoped>
+                            .axis {
+                            font: 10px sans-serif;
+                            }
+                            .axis path,
+                            .axis line {
+                            fill: none;
+                            stroke: #000;
+                            shape-rendering: crispEdges;
+                            }
+                            .tooltip {
+                            position: absolute;
+                            width: 200px;
+                            height: 28px;
+                            pointer-events: none;
+                            }
+
+</style>
+                        <script src="Bar1.js">
+                    
+                    
+                    
+                </script>
+                    </div>
+                </div>
+                <div id='scatter' class="col-md-8">
+                    <style scoped>
+                        body {
+                        font: 11px sans-serif;
+                        }
+                        .axis path,
+                        .axis line {
+                        fill: none;
+                        stroke: #000;
+                        shape-rendering: crispEdges;
+                        }
+                        .dot {
+                        stroke: #000;
+                        }
+                        .tooltip {
+                        position: absolute;
+                        width: 200px;
+                        height: 28px;
+                        pointer-events: none;
+
+</style>                     
+                    <script src="Scatterplot.js">
+                    
+                    
+                    
+                        </script>                     
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="row" id="grid">
+                        <p><strong>Total Sites</strong></p>
+                        
+                    </div>
+                    <div class="row" id="grid">56546ge</div>
+                </div>
+                <div class="col-md-4">
+                    <div class="row pg-empty-placeholder"></div>
+                    
+                </div>
+                <div class="col-md-4">
+                   
+                </div>
+            </div>
+            <div class="row">
+                <div id="map" class="col-md-6" style="padding-right:19px;">
+</div>
+                <div class="col-md-6" id="left">
+                    <!-- start feedwind code -->
+                    <script type="text/javascript">document.write('\x3Cscript type="text/javascript" src="' + ('https:' == document.location.protocol ? 'https://' : 'http://') + 'feed.mikle.com/js/rssmikle.js">\x3C/script>');</script>
+                    <script type="text/javascript">(function() {var params = {rssmikle_url: "http://rss.cnn.com/rss/cnn_tech.rss",rssmikle_frame_width: "525",rssmikle_frame_height: "200",frame_height_by_article: "0",rssmikle_target: "_blank",rssmikle_font: "Arial, Helvetica, sans-serif",rssmikle_font_size: "12",rssmikle_border: "off",responsive: "off",rssmikle_css_url: "",text_align: "left",text_align2: "left",corner: "off",scrollbar: "on",autoscroll: "on",scrolldirection: "up",scrollstep: "3",mcspeed: "20",sort: "Off",rssmikle_title: "on",rssmikle_title_sentence: "",rssmikle_title_link: "",rssmikle_title_bgcolor: "#11D445",rssmikle_title_color: "#FFFFFF",rssmikle_title_bgimage: "",rssmikle_item_bgcolor: "#FFFFFF",rssmikle_item_bgimage: "",rssmikle_item_title_length: "55",rssmikle_item_title_color: "#189EBA",rssmikle_item_border_bottom: "on",rssmikle_item_description: "on",item_link: "off",rssmikle_item_description_length: "150",rssmikle_item_description_color: "#666666",rssmikle_item_date: "gl1",rssmikle_timezone: "Etc/GMT",datetime_format: "%b %e, %Y %l:%M %p",item_description_style: "text",item_thumbnail: "full",item_thumbnail_selection: "auto",article_num: "15",rssmikle_item_podcast: "off",keyword_inc: "",keyword_exc: ""};feedwind_show_widget_iframe(params);})();</script>
+                    <div style="font-size:10px; text-align:center; width:300px;">
+                        <a href="http://feed.mikle.com/" target="_blank" style="color:#CCCCCC;">RSS Feed Widget</a>
+                        <!--Please display the above link in your web page according to Terms of Service.-->
+                    </div>
+                    <!-- end feedwind code -->                     
+                </div>
+            </div>
+            <nav class="navbar navbar-inverse navbar-bottom"> 
+                <div class="container"> 
+                    <div class="navbar-header"> 
+                        <a class="navbar-brand" style="padding-top: 10px;" href="#"> 
+                            <img alt="Brand" width="35" height="35" src="Logo/Logo.png">                             
+                        </a>                         
+                    </div>                     
+                    <div id="navbar" class="collapse navbar-collapse"> 
+                        <ul class="nav navbar-nav"> 
+                            <li> 
+                                <a href="#">&copy Energon</a> 
+                            </li>                             
+                        </ul>                         
+                    </div>                     
+                    <!--/.nav-collapse -->                     
+                </div>                 
+            </nav>             
+            <!--/.nav-collapse -->             
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>             
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>             
+            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzCAoThV-ZXaWPW73WsIXFE1RFiQm7vhc&callback=initMap">
+        </script>             
+            <script type="text/javascript">
+
+var map;
+function initMap() {
+
+        // Create an array of styles.
+ /*
+        var styles = [
+    {
+      stylers: [
+        { hue: "00ffee" },
+        { saturation: 20 }
+      ]
+    },{
+      featureType: "road",
+      elementType: "geometry",
+      stylers: [
+        { lightness: 100 },
+        { visibility: "simplified" }
+      ]
+    },{
+      featureType: "road",
+      elementType: "labels",
+      stylers: [
+        { visibility: "off" }
+      ]
+    }
+  ];
+
+  // Create a new StyledMapType object, passing it the array of styles,
+  // as well as the name to be displayed on the map type control.
+  var styledMap = new google.maps.StyledMapType(styles,
+    {name: "Styled Map"});
+
+  // Create a map object, and include the MapTypeId to add
+  // to the map type control.
+  var mapOptions = {
+    zoom: 3,
+    center: new google.maps.LatLng(20.650790, 79.423797),
+    mapTypeControlOptions: {
+      mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+    }
+  };
+  var map = new google.maps.Map(document.getElementById('map'),
+    mapOptions);
+
+  //Associate the styled map with the MapTypeId and set it to display.
+ // map.mapTypes.set('map_style', styledMap);
+  //map.setMapTypeId('map_style');
+  */
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 21.701841,lng: 78.986311},
+    zoom: 3,
+	mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+
+
+//var marker = new google.maps.Marker({
+  //  position: {lat: 23.91067,lng: 71.198288},
+    
+  //});
+  var locations = [
+      ['Bitta Solar Power Plant', 23.257829, 69.028301, 4],
+      ['Rajasthan Solar Project', 27.131124, 72.359452, 5],
+      ['Charanka Solar Park', 23.91067, 71.198288, 3],
+      ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+      ['Maroubra Beach', -33.950198, 151.259302, 1]
+    ];
+ var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i))
+}
+}
+
+
+
+    </script>             
+    </body>     
+</html>

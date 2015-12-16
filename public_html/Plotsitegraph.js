@@ -29,8 +29,13 @@ var x1 = d3.scale.ordinal();
 var y = d3.scale.linear()
     .range([height, 0]);
 
+//var color = d3.scale.ordinal()
+  //  .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+
 var color = d3.scale.ordinal()
-    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+    .range(["#189eba", "#3c1ba7", "#189eba", "#3c1ba7", "#4f1469", "#d0743c", "#ff8c00"]);
+
+
 
 var xAxis = d3.svg.axis()
     .scale(x0)
@@ -147,7 +152,7 @@ var y = d3.scale.linear()
     .range([height, 0]);
 
 var color = d3.scale.ordinal()
-    .range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+    .range(["#189eba", "#3c1ba7", "#189eba", "#3c1ba7", "#4f1469", "#d0743c", "#ff8c00"]);
 
 var xAxis = d3.svg.axis()
     .scale(x0)
@@ -177,7 +182,7 @@ d3.csv("Site4Monthly.csv", function(error, data) {
 
   x0.domain(data.map(function(d) { return d.State; }));
   x1.domain(ageNames).rangeRoundBands([0, x0.rangeBand()]);
-  y.domain([0, d3.max(data, function(d) { return d3.max(d.ages, function(d) { return d.value; }); })]);
+  y.domain([0, d3.max(data, function(d) { return d3.max(d.ages, function(d) { return d.value; }); })+0.05]);
 
   svg.append("g")
       .attr("class", "x axis")

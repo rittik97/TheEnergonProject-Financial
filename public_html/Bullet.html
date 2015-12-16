@@ -1,0 +1,116 @@
+ 
+<meta charset="utf-8"> 
+<style> 
+    body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: auto;
+    padding-top: 40px;
+    position: relative;
+    width: 960px;
+    }
+    button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    }
+    .bullet { font: 10px sans-serif; }
+    .bullet .marker { stroke: #000; stroke-width: 2px; }
+    .bullet .tick line { stroke: #666; stroke-width: .5px; }
+    .bullet .range.s0 { fill: #ddd; }
+    .bullet .range.s1 { fill: #ddd; }
+    .bullet .range.s2 { fill: #ddd; }
+    .bullet .measure.s0 { fill: lightgreen; }
+    .bullet .title { font-size: 14px; font-weight: bold; }
+    .bullet .subtitle { fill: #999; }
+</style> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script> 
+<script src="bullet.js"></script> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> 
+<body> 
+    <div class="container"> 
+        <div class="row"> 
+            <div class="col-md-6 text-center" style="margin-left: auto; margin-right: auto;"> 
+                <img src="Icons/Co2.png" class="img-thumbnail" height="75" width="75" /> 
+                <span class="label label-default">76</span> 
+            </div>             
+            <div class="col-md-6 text-center"> 
+                <img src="Icons/Fuel.png" class="img-thumbnail" height="75" width="75" /> 
+                <span class="label label-default">400</span> 
+            </div>             
+        </div>         
+        <div class="row" style="margin-top:20px; margin-bottom:5px;"> 
+            <div class="col-md-6 text-center" style="margin-left: auto; margin-right: auto;"> 
+                <img src="Icons/Tree.png" class="img-thumbnail" style="display: inline-block;" height="75" width="75">                 
+                <span class="label label-default" style="display: inline-block;">300</span> 
+            </div>             
+            <div class="col-md-6 text-center"> 
+                <img src="Icons/icon_coal.jpg" class="img-thumbnail" style="display: inline-block;" height="75" width="75">                 
+                <span class="label label-default" style="display: inline-block;">23</span> 
+            </div>             
+        </div>         
+    </div>     
+    <script>
+
+var margin = {top: 5, right: 40, bottom: 20, left: 270},
+    width = 960 - margin.left - margin.right,
+    height = 50 - margin.top - margin.bottom;
+
+var chart = d3.bullet()
+    .width(width)
+    .height(height);
+    
+    
+
+//d3.json("getinstantdata.php")
+  //  .header("Content-Type", "application/x-www-form-urlencoded")
+    //.post("a=2&b=3", function(error, data)
+d3.json("bullets.json", function(error, data) {
+  if (error) throw error;
+  
+
+  var svg = d3.select("body").selectAll("svg")
+      .data(data)
+    .enter().append("svg")
+      .attr("class", "bullet")
+      .attr("width", width + margin.left + margin.right)
+      .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+      .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+      .call(chart)
+      .attr("align","center");
+
+  var title = svg.append("g")
+      .style("text-anchor", "end")
+      .attr("transform", "translate(-6," + height / 2 + ")");
+
+  title.append("text")
+      .attr("class", "title")
+      .text(function(d) { return d.title; });
+
+  title.append("text")
+      .attr("class", "subtitle")
+      .attr("dy", "1em")
+      .text(function(d) { return d.subtitle; });
+
+  d3.selectAll("button").on("click", function() {
+    svg.datum(randomize).call(chart.duration(1000)); // TODO automatic transition
+  });
+});
+
+function randomize(d) {
+  if (!d.randomizer) d.randomizer = randomizer(d);
+  d.ranges = d.ranges.map(d.randomizer);
+  d.markers = d.markers.map(d.randomizer);
+  d.measures = d.measures.map(d.randomizer);
+  return d;
+}
+
+function randomizer(d) {
+  var k = d3.max(d.ranges) * .2;
+  return function(d) {
+    return Math.max(0, d + k * (Math.random() - .5));
+  };
+}
+
+</script>     
+</body>
