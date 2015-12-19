@@ -20,6 +20,13 @@ and open the template in the editor.
     
     font-size: 300%;
 }
+.uppergridlabel{
+    //display: block;
+    text-align: left;
+    background-color: white;
+    
+    font-size: 200%;
+}
 .labelgrid{
     display: block;
     text-align: right;
